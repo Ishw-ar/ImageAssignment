@@ -1,5 +1,6 @@
 package com.karan.testproject.pagingSource
 
+import android.util.Log
 import androidx.paging.PagingSource
 import com.karan.testproject.api.ImageService
 import com.karan.testproject.models.Photo
@@ -11,6 +12,7 @@ class ImagePagingSource(private val imageService: ImageService) :
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Photo> {
         //for first case it will be null, then we can pass some default value, in our case it's 1
         val page = params.key ?: 1
+        Log.d("varsha", "vars")
         return try {
             val response = imageService.getPhotosId(
                 "flickr.photos.search",
@@ -26,6 +28,8 @@ class ImagePagingSource(private val imageService: ImageService) :
             LoadResult.Page(
                 data = photos, prevKey = if (page == 1) null else page - 1,
                 nextKey = if (photos.isEmpty()) null else page + 1
+
+
             )
         } catch (exception: IOException) {
             return LoadResult.Error(exception)
