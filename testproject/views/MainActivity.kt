@@ -41,10 +41,8 @@ class MainActivity : AppCompatActivity(), ItemClickListener{
     private val imageViewModel by viewModel<ImageViewModel>()
     lateinit var imageAdapter: ImageAdapter
     lateinit var shimmerFrameLayout: ShimmerFrameLayout
-   // private val imageList= mutableListOf<Photo>()
     var isGrid:Boolean=false
-   // var page = 1
-//    var isLoading:Boolean=false
+
 
 
 
